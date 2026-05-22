@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePublicClient } from "wagmi";
 import type { Address } from "viem";
-import { PENALTY_MATCH_ADDRESS, penaltyMatchAbi } from "../contract";
+import { GameState, scanGames } from "../games";
 
 export type LiveMatch = {
   id: bigint;
@@ -18,8 +18,9 @@ export type LiveMatch = {
 };
 
 const POLL = 5000;
+const LIMIT = 300;
 
-/** Active (state === 2) matches anyone can spectate. Scans the id range via multicall. */
+/** Active matches anyone can spectate. Polls every 5s. */
 export function useLiveMatches() {
   const publicClient = usePublicClient();
   const [matches, setMatches] = useState<LiveMatch[] | null>(null);
@@ -31,34 +32,16 @@ export function useLiveMatches() {
 
     const scan = async () => {
       try {
-        const nextId = (await publicClient.readContract({
-          address: PENALTY_MATCH_ADDRESS, abi: penaltyMatchAbi, functionName: "nextId",
-        })) as bigint;
-        const total = Number(nextId) - 1;
-        if (total <= 0) { if (!cancelled) setMatches([]); return; }
-
-        const ids: bigint[] = [];
-        for (let i = total; i >= Math.max(1, total - 300); i--) ids.push(BigInt(i));
-
-        const games = await publicClient.multicall({
-          contracts: ids.map((id) => ({
-            address: PENALTY_MATCH_ADDRESS, abi: penaltyMatchAbi, functionName: "games", args: [id],
-          })),
-        });
-
-        const live: LiveMatch[] = [];
-        games.forEach((res, idx) => {
-          if (res.status !== "success") return;
-          const g = res.result as unknown as readonly [
-            Address, Address, bigint, number, number, number, number, number, number, bigint
-          ];
-          if (Number(g[8]) !== 2) return; // 2 = Active
-          live.push({
-            id: ids[idx], p1: g[0], p2: g[1], c1: Number(g[3]), c2: Number(g[4]),
-            score1: Number(g[5]), score2: Number(g[6]), round: Number(g[7]), stake: g[2],
-          });
-        });
-        if (!cancelled) setMatches(live);
+        const rows = await scanGames(publicClient, LIMIT);
+        if (cancelled) return;
+        setMatches(
+          rows
+            .filter((g) => g.state === GameState.Active)
+            .map((g) => ({
+              id: g.id, p1: g.p1, p2: g.p2, c1: g.c1, c2: g.c2,
+              score1: g.score1, score2: g.score2, round: g.round, stake: g.stake,
+            }))
+        );
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e));
       }

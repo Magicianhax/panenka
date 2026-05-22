@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePublicClient } from "wagmi";
 import type { Address } from "viem";
-import { PENALTY_MATCH_ADDRESS, penaltyMatchAbi } from "../contract";
+import { GameState, ZERO_ADDR, scanGames } from "../games";
 
 export type SettledMatch = {
   id: bigint;
@@ -17,9 +17,9 @@ export type SettledMatch = {
   winner: Address | null; // null = draw
 };
 
-const ZERO = "0x0000000000000000000000000000000000000000";
+const LIMIT = 500;
 
-/** Reads all settled matches (state === 3) via nextId + multicall. Newest first. */
+/** All settled two-player matches, newest first. */
 export function useSettledMatches() {
   const publicClient = usePublicClient();
   const [matches, setMatches] = useState<SettledMatch[] | null>(null);
@@ -31,63 +31,24 @@ export function useSettledMatches() {
 
     (async () => {
       try {
-        const nextId = (await publicClient.readContract({
-          address: PENALTY_MATCH_ADDRESS,
-          abi: penaltyMatchAbi,
-          functionName: "nextId",
-        })) as bigint;
-
-        const total = Number(nextId) - 1;
-        if (total <= 0) {
-          if (!cancelled) setMatches([]);
-          return;
-        }
-
-        const ids: bigint[] = [];
-        const scanFrom = Math.max(1, total - 500);
-        for (let i = total; i >= scanFrom; i--) ids.push(BigInt(i));
-
-        const games = await publicClient.multicall({
-          contracts: ids.map((id) => ({
-            address: PENALTY_MATCH_ADDRESS,
-            abi: penaltyMatchAbi,
-            functionName: "games",
-            args: [id],
-          })),
-        });
-
-        const settled: SettledMatch[] = [];
-        games.forEach((res, idx) => {
-          if (res.status !== "success") return;
-          const g = res.result as unknown as readonly [
-            Address, Address, bigint, number, number, number, number, number, number, bigint
-          ];
-          // state 3 = Settled; require a real opponent (exclude refunded-open edge cases)
-          if (Number(g[8]) !== 3 || g[1] === ZERO) return;
-          const s1 = Number(g[5]);
-          const s2 = Number(g[6]);
-          settled.push({
-            id: ids[idx],
-            p1: g[0],
-            p2: g[1],
-            c1: Number(g[3]),
-            c2: Number(g[4]),
-            score1: s1,
-            score2: s2,
-            stake: g[2],
-            winner: s1 > s2 ? g[0] : s2 > s1 ? g[1] : null,
-          });
-        });
-
-        if (!cancelled) setMatches(settled);
+        const rows = await scanGames(publicClient, LIMIT);
+        if (cancelled) return;
+        setMatches(
+          rows
+            // require a real opponent (exclude refunded-open edge cases)
+            .filter((g) => g.state === GameState.Settled && g.p2 !== ZERO_ADDR)
+            .map((g) => ({
+              id: g.id, p1: g.p1, p2: g.p2, c1: g.c1, c2: g.c2,
+              score1: g.score1, score2: g.score2, stake: g.stake,
+              winner: g.score1 > g.score2 ? g.p1 : g.score2 > g.score1 ? g.p2 : null,
+            }))
+        );
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e));
       }
     })();
 
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [publicClient]);
 
   return { matches, error };

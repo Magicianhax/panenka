@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePublicClient } from "wagmi";
 import type { Address } from "viem";
-import { PENALTY_MATCH_ADDRESS, penaltyMatchAbi } from "../contract";
+import { GameState, scanGames } from "../games";
 
 export type OpenMatch = {
   id: bigint;
@@ -12,7 +12,9 @@ export type OpenMatch = {
   stake: bigint;
 };
 
-/** Fetches open (state === Open) matches by scanning the contract's id range via multicall. */
+const LIMIT = 200;
+
+/** Open matches waiting for an opponent. */
 export function useOpenMatches() {
   const publicClient = usePublicClient();
   const [matches, setMatches] = useState<OpenMatch[] | null>(null);
@@ -24,51 +26,19 @@ export function useOpenMatches() {
 
     (async () => {
       try {
-        const nextId = (await publicClient.readContract({
-          address: PENALTY_MATCH_ADDRESS,
-          abi: penaltyMatchAbi,
-          functionName: "nextId",
-        })) as bigint;
-
-        const total = Number(nextId) - 1;
-        if (total <= 0) {
-          if (!cancelled) setMatches([]);
-          return;
-        }
-
-        const ids: bigint[] = [];
-        const scanFrom = Math.max(1, total - 200);
-        for (let i = total; i >= scanFrom; i--) ids.push(BigInt(i));
-
-        const games = await publicClient.multicall({
-          contracts: ids.map((id) => ({
-            address: PENALTY_MATCH_ADDRESS,
-            abi: penaltyMatchAbi,
-            functionName: "games",
-            args: [id],
-          })),
-        });
-
-        const open: OpenMatch[] = [];
-        games.forEach((res, idx) => {
-          if (res.status !== "success") return;
-          const g = res.result as unknown as readonly [
-            Address, Address, bigint, number, number, number, number, number, number, bigint
-          ];
-          if (Number(g[8]) === 1) {
-            open.push({ id: ids[idx], player1: g[0], country: Number(g[3]), stake: g[2] });
-          }
-        });
-
-        if (!cancelled) setMatches(open);
+        const rows = await scanGames(publicClient, LIMIT);
+        if (cancelled) return;
+        setMatches(
+          rows
+            .filter((g) => g.state === GameState.Open)
+            .map((g) => ({ id: g.id, player1: g.p1, country: g.c1, stake: g.stake }))
+        );
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e));
       }
     })();
 
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [publicClient]);
 
   return { matches, error };

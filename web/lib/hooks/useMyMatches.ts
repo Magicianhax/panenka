@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePublicClient } from "wagmi";
 import type { Address } from "viem";
-import { PENALTY_MATCH_ADDRESS, penaltyMatchAbi } from "../contract";
+import { GameState, ZERO_ADDR, scanGames } from "../games";
 
 export type MyMatch = {
   id: bigint;
@@ -25,9 +25,9 @@ type Bucketed = {
   record: { played: number; wins: number; losses: number; draws: number; net: bigint };
 };
 
-const ZERO = "0x0000000000000000000000000000000000000000";
+const LIMIT = 1000;
 
-/** Scans the id range via multicall and returns every match the address is part of, bucketed. */
+/** Every match the address is part of, bucketed, with a win/loss/net record. */
 export function useMyMatches(address?: Address) {
   const publicClient = usePublicClient();
   const [data, setData] = useState<Bucketed | null>(null);
@@ -43,30 +43,8 @@ export function useMyMatches(address?: Address) {
 
     (async () => {
       try {
-        const nextId = (await publicClient.readContract({
-          address: PENALTY_MATCH_ADDRESS,
-          abi: penaltyMatchAbi,
-          functionName: "nextId",
-        })) as bigint;
-
-        const total = Number(nextId) - 1;
-        if (total <= 0) {
-          if (!cancelled) setData({ open: [], active: [], settled: [], record: { played: 0, wins: 0, losses: 0, draws: 0, net: 0n } });
-          return;
-        }
-
-        const ids: bigint[] = [];
-        const scanFrom = Math.max(1, total - 1000);
-        for (let i = total; i >= scanFrom; i--) ids.push(BigInt(i));
-
-        const games = await publicClient.multicall({
-          contracts: ids.map((id) => ({
-            address: PENALTY_MATCH_ADDRESS,
-            abi: penaltyMatchAbi,
-            functionName: "games",
-            args: [id],
-          })),
-        });
+        const rows = await scanGames(publicClient, LIMIT);
+        if (cancelled) return;
 
         const open: MyMatch[] = [];
         const active: MyMatch[] = [];
@@ -74,44 +52,39 @@ export function useMyMatches(address?: Address) {
         let wins = 0, losses = 0, draws = 0;
         let net = 0n;
 
-        games.forEach((res, idx) => {
-          if (res.status !== "success") return;
-          const g = res.result as unknown as readonly [
-            Address, Address, bigint, number, number, number, number, number, number, bigint
-          ];
-          const p1 = g[0], p2 = g[1];
-          const mine = p1.toLowerCase() === me || p2.toLowerCase() === me;
-          if (!mine) return;
+        for (const g of rows) {
+          const isP1 = g.p1.toLowerCase() === me;
+          const isP2 = g.p2.toLowerCase() === me;
+          if (!isP1 && !isP2) continue;
+
           const m: MyMatch = {
-            id: ids[idx], p1, p2, c1: Number(g[3]), c2: Number(g[4]),
-            score1: Number(g[5]), score2: Number(g[6]), stake: g[2],
-            state: Number(g[8]), isP1: p1.toLowerCase() === me,
+            id: g.id, p1: g.p1, p2: g.p2, c1: g.c1, c2: g.c2,
+            score1: g.score1, score2: g.score2, stake: g.stake, state: g.state, isP1,
           };
-          if (m.state === 1) open.push(m);
-          else if (m.state === 2) active.push(m);
-          else if (m.state === 3) {
+
+          if (m.state === GameState.Open) open.push(m);
+          else if (m.state === GameState.Active) active.push(m);
+          else if (m.state === GameState.Settled) {
             settled.push(m);
             // record only counts real 2-player games
-            if (p2 !== ZERO) {
-              const profit = (m.stake * 19500n) / 10000n - m.stake; // payout(2*0.975) - stake
+            if (g.p2 !== ZERO_ADDR) {
+              const profit = (m.stake * 19500n) / 10000n - m.stake; // payout (2 * 0.975) - stake
               const tie = m.score1 === m.score2;
-              const iWon = m.isP1 ? m.score1 > m.score2 : m.score2 > m.score1;
+              const iWon = isP1 ? m.score1 > m.score2 : m.score2 > m.score1;
               if (tie) draws++;
               else if (iWon) { wins++; net += profit; }
               else { losses++; net -= m.stake; }
             }
           }
-        });
+        }
 
-        if (!cancelled) setData({ open, active, settled, record: { played: wins + losses + draws, wins, losses, draws, net } });
+        setData({ open, active, settled, record: { played: wins + losses + draws, wins, losses, draws, net } });
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e));
       }
     })();
 
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [publicClient, address]);
 
   return { data, error };

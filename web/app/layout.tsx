@@ -25,7 +25,12 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+// Set NEXT_PUBLIC_SITE_URL to your production domain so OG/Twitter preview
+// images resolve to absolute URLs (otherwise they fall back to localhost).
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "PANENKA — Penalty Shootout on X Layer",
   description: "PANENKA — a 1v1 on-chain penalty shootout. Outguess your opponent, stake OKB, winner takes the pot. X Cup · WC26 on X Layer.",
   openGraph: { title: "PANENKA — Penalty Shootout", description: "Outguess. Win the pot. 1v1 on-chain penalty shootout on X Layer." },
