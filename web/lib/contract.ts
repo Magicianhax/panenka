@@ -1,0 +1,210 @@
+export const PENALTY_MATCH_ADDRESS = (process.env
+  .NEXT_PUBLIC_PENALTY_MATCH_ADDRESS ?? "0x0000000000000000000000000000000000000000") as `0x${string}`;
+
+export const penaltyMatchAbi = [
+  {
+    type: "constructor",
+    inputs: [{ name: "_treasury", type: "address" }],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "createMatch",
+    stateMutability: "payable",
+    inputs: [{ name: "country", type: "uint8" }],
+    outputs: [{ name: "id", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "joinMatch",
+    stateMutability: "payable",
+    inputs: [
+      { name: "id", type: "uint256" },
+      { name: "country", type: "uint8" },
+    ],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "cancelOpen",
+    stateMutability: "nonpayable",
+    inputs: [{ name: "id", type: "uint256" }],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "commitMove",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "id", type: "uint256" },
+      { name: "hash_", type: "bytes32" },
+    ],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "revealMove",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "id", type: "uint256" },
+      { name: "shoot", type: "uint8" },
+      { name: "dive", type: "uint8" },
+      { name: "salt", type: "bytes32" },
+    ],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "claimTimeout",
+    stateMutability: "nonpayable",
+    inputs: [{ name: "id", type: "uint256" }],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "withdraw",
+    stateMutability: "nonpayable",
+    inputs: [],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "pending",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "address" }],
+    outputs: [{ type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "paused",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ type: "bool" }],
+  },
+  {
+    type: "function",
+    name: "setPaused",
+    stateMutability: "nonpayable",
+    inputs: [{ name: "p", type: "bool" }],
+    outputs: [],
+  },
+  {
+    type: "function",
+    name: "owner",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ type: "address" }],
+  },
+  {
+    type: "function",
+    name: "nextId",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "games",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "uint256" }],
+    outputs: [
+      { name: "player1", type: "address" },
+      { name: "player2", type: "address" },
+      { name: "stake", type: "uint96" },
+      { name: "country1", type: "uint8" },
+      { name: "country2", type: "uint8" },
+      { name: "score1", type: "uint8" },
+      { name: "score2", type: "uint8" },
+      { name: "currentRound", type: "uint8" },
+      { name: "state", type: "uint8" },
+      { name: "lastActionAt", type: "uint64" },
+    ],
+  },
+  {
+    type: "function",
+    name: "getRound",
+    stateMutability: "view",
+    inputs: [
+      { name: "id", type: "uint256" },
+      { name: "round", type: "uint8" },
+    ],
+    outputs: [
+      {
+        type: "tuple",
+        components: [
+          { name: "commit1", type: "bytes32" },
+          { name: "commit2", type: "bytes32" },
+          { name: "shoot1", type: "uint8" },
+          { name: "dive1", type: "uint8" },
+          { name: "shoot2", type: "uint8" },
+          { name: "dive2", type: "uint8" },
+          { name: "revealed1", type: "bool" },
+          { name: "revealed2", type: "bool" },
+        ],
+      },
+    ],
+  },
+  {
+    type: "function",
+    name: "computeCommit",
+    stateMutability: "pure",
+    inputs: [
+      { name: "shoot", type: "uint8" },
+      { name: "dive", type: "uint8" },
+      { name: "salt", type: "bytes32" },
+      { name: "sender", type: "address" },
+      { name: "id", type: "uint256" },
+      { name: "round", type: "uint8" },
+    ],
+    outputs: [{ type: "bytes32" }],
+  },
+  // events
+  {
+    type: "event",
+    name: "Created",
+    inputs: [
+      { name: "id", type: "uint256", indexed: true },
+      { name: "p1", type: "address", indexed: true },
+      { name: "country", type: "uint8", indexed: false },
+      { name: "stake", type: "uint96", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "Joined",
+    inputs: [
+      { name: "id", type: "uint256", indexed: true },
+      { name: "p2", type: "address", indexed: true },
+      { name: "country", type: "uint8", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "RoundDone",
+    inputs: [
+      { name: "id", type: "uint256", indexed: true },
+      { name: "round", type: "uint8", indexed: false },
+      { name: "goal1", type: "bool", indexed: false },
+      { name: "goal2", type: "bool", indexed: false },
+      { name: "score1", type: "uint8", indexed: false },
+      { name: "score2", type: "uint8", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "Settled",
+    inputs: [
+      { name: "id", type: "uint256", indexed: true },
+      { name: "winner", type: "address", indexed: true },
+      { name: "payout", type: "uint256", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "Claimed",
+    inputs: [
+      { name: "who", type: "address", indexed: true },
+      { name: "amount", type: "uint256", indexed: false },
+    ],
+  },
+] as const;

@@ -1,0 +1,52 @@
+# =====================================================================
+# PANENKA — root .gitignore
+# Tracked: README.md, web/ (source), contracts/ (src, test, script, config)
+# =====================================================================
+
+# --- Foundry ---
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+contracts/lib/
+contracts/.env
+# Foundry toolchain binary (installed locally, not source)
+foundry_*/
+
+# --- Node / Next ---
+**/node_modules/
+**/.next/
+**/dist/
+**/build/
+**/.turbo/
+**/*.tsbuildinfo
+
+# --- Env & secrets ---
+**/.env
+**/.env.local
+**/.env.*.local
+*.key
+api.txt
+
+# --- Internal dev artifacts (not part of the deliverable) ---
+_design/
+_design2/
+docs/
+tasks/
+scripts/
+meshy_output/
+
+# --- Stray design / scratch assets at repo root ---
+/image*.png
+/*.glb
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+*.log
+npm-debug.log*
+pnpm-debug.log*
