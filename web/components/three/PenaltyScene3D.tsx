@@ -199,7 +199,7 @@ function useCrowdTexture() {
   }, []);
 }
 
-/** LED perimeter advertising board texture. */
+/** LED perimeter advertising board texture — PANENKA brand loop. */
 function useAdTexture() {
   return useMemo(() => {
     const c = document.createElement("canvas");
@@ -212,19 +212,32 @@ function useAdTexture() {
     g.fillRect(0, 6, c.width, 4);
     g.fillStyle = "#FFC940";
     g.fillRect(0, c.height - 10, c.width, 4);
-    g.font = "bold 58px 'Chakra Petch', sans-serif";
     g.textBaseline = "middle";
-    const segs = ["X·CUP", "X LAYER", "WORLD CUP 2026", "WINNER TAKES POT"];
-    const segCols = ["#FFC940", "#00E5FF", "#FFFFFF", "#FF1F8B"];
+    const segs: { text: string; color: string; size: number; emph?: boolean }[] = [
+      { text: "★ PANENKA ★",            color: "#FFC940", size: 64, emph: true },
+      { text: "FOLLOW @play_panenka",    color: "#00E5FF", size: 56 },
+      { text: "PLAYPANENKA.FUN",         color: "#FFFFFF", size: 56 },
+      { text: "WINNER TAKES POT",        color: "#FF1F8B", size: 56 },
+      { text: "1V1 PENALTY SHOOTOUT",    color: "#FFFFFF", size: 56 },
+      { text: "BUILT ON X LAYER · WC26", color: "#FFC940", size: 56 },
+    ];
     let x = 20;
     let i = 0;
     while (x < c.width) {
-      const s = segs[i % segs.length];
-      g.fillStyle = segCols[i % segCols.length];
-      g.fillText(s, x, c.height / 2);
-      x += g.measureText(s).width + 60;
+      const seg = segs[i % segs.length];
+      g.font = `bold ${seg.size}px 'Chakra Petch', sans-serif`;
+      g.fillStyle = seg.color;
+      if (seg.emph) {
+        // subtle glow on the PANENKA wordmark only
+        g.shadowColor = seg.color; g.shadowBlur = 12;
+      } else {
+        g.shadowBlur = 0;
+      }
+      g.fillText(seg.text, x, c.height / 2);
+      x += g.measureText(seg.text).width + 60;
       i++;
     }
+    g.shadowBlur = 0;
     const tex = new THREE.CanvasTexture(c);
     tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
     tex.repeat.set(3, 1);
