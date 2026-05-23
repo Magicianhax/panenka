@@ -13,7 +13,7 @@ const KEEPER_FACE_ROT = 0; // faces the shooter (toward camera)
 
 function ModelKeeper({ diveDir, progressRef }: { diveDir: number | null; progressRef: React.MutableRefObject<number> }) {
   const pivot = useRef<THREE.Group>(null);
-  const { scene } = useGLTF(KEEPER_URL);
+  const { scene } = useGLTF(KEEPER_URL, true);
 
   // Use the scene directly (single instance) — cloning would detach the skinned mesh
   // from its skeleton. Collect bones + capture their rest-pose quaternions once.
@@ -113,7 +113,7 @@ function ModelKeeper({ diveDir, progressRef }: { diveDir: number | null; progres
     </group>
   );
 }
-useGLTF.preload(KEEPER_URL);
+useGLTF.preload(KEEPER_URL, true);
 
 const dirX = (d: number | null) => (d === 0 ? -1.8 : d === 2 ? 1.8 : 0);
 const GOAL_Z = -3;

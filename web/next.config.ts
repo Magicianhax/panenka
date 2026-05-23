@@ -14,6 +14,21 @@ const nextConfig: NextConfig = {
     };
     return config;
   },
+  // Cache static 3D/audio assets aggressively. Their URLs are content-stable
+  // (we bump them by changing the filename if the asset changes), so a
+  // one-year immutable cache means repeat visitors pay zero re-download cost.
+  async headers() {
+    return [
+      {
+        source: "/models/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        source: "/audio/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

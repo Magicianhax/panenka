@@ -1,6 +1,7 @@
 "use client";
 
 import { use, useEffect, useMemo, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 import { notFound } from "next/navigation";
 import {
   useAccount,
@@ -51,6 +52,13 @@ export default function MatchPage({ params }: { params: Promise<{ id: string }> 
   const matchId = useMemo(() => {
     try { return BigInt(id); } catch { notFound(); }
   }, [id]);
+
+  // Kick off GLB fetches as soon as the page render starts, in parallel with
+  // the JS chunk + 3D dynamic-import chain. Without this, the keeper/goal
+  // can pop in seconds late on a cold load.
+  ReactDOM.preload("/models/keeper.glb", { as: "fetch", crossOrigin: "anonymous", type: "model/gltf-binary" });
+  ReactDOM.preload("/models/goal.glb", { as: "fetch", crossOrigin: "anonymous", type: "model/gltf-binary" });
+
   const { address, isConnected } = useAccount();
   const [aimShoot, setAimShoot] = useState<number | null>(null);
 
