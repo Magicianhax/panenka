@@ -53,3 +53,8 @@ pnpm-debug.log*
 
 # --- Vercel ---
 .vercel/
+
+# --- Playwright (test runtime artifacts, not source) ---
+web/test-results/
+web/playwright-report/
+web/screenshots/
