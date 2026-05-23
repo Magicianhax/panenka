@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Chakra_Petch, Sora, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "./providers";
+import { Footer } from "@/components/layout/Footer";
 import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   title: "PANENKA — Penalty Shootout on X Layer",
   description: "PANENKA — a 1v1 on-chain penalty shootout. Outguess your opponent, stake OKB, winner takes the pot. X Cup · WC26 on X Layer.",
   openGraph: { title: "PANENKA — Penalty Shootout", description: "Outguess. Win the pot. 1v1 on-chain penalty shootout on X Layer." },
-  twitter: { card: "summary_large_image", creator: "@XLayerOfficial" },
+  twitter: { card: "summary_large_image", site: "@play_panenka", creator: "@play_panenka" },
 };
 
 export const viewport: Viewport = {
@@ -49,7 +50,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="min-h-dvh">
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Footer />
+        </Providers>
         <Analytics />
       </body>
     </html>

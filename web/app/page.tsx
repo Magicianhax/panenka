@@ -173,15 +173,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <footer style={{ borderTop: "1px solid var(--line)", padding: "20px 24px" }}>
-        <div className="mx-auto max-w-6xl row between" style={{ flexWrap: "wrap", gap: 12 }}>
-          <div className="display" style={{ fontSize: 22, color: "var(--fg)" }}>PANENKA</div>
-          <div className="mono" style={{ fontSize: 10, color: "var(--fg-soft)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-            built on x layer · @xlayerofficial · not affiliated with FIFA
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

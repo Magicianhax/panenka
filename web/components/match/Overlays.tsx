@@ -52,8 +52,8 @@ export function Victory({ score1, score2, stake, c1, c2, isP1, isP2 }: { score1:
   const url = typeof window !== "undefined" ? window.location.href : "";
   const tweet = encodeURIComponent(
     tie
-      ? `Penalty shootout ended ${score1}-${score2} — a draw. On @XLayerOfficial. ${url}`
-      : `${winnerName} beat ${loserName} ${Math.max(score1, score2)}-${Math.min(score1, score2)} and took ${formatEther(prize)} OKB on @XLayerOfficial. ${url}`
+      ? `Penalty shootout ended ${score1}-${score2} — a draw. Play @play_panenka on @XLayerOfficial. ${url}`
+      : `${winnerName} beat ${loserName} ${Math.max(score1, score2)}-${Math.min(score1, score2)} and took ${formatEther(prize)} OKB. Play @play_panenka on @XLayerOfficial. ${url}`
   );
   const headline = tie ? "STALEMATE." : youWon ? "VICTORY." : youLost ? "DEFEAT." : `${winnerName?.toUpperCase()} WINS.`;
   const holo = youWon || (!isP1 && !isP2 && !tie);
