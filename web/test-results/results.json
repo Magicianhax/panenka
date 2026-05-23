@@ -1,0 +1,1152 @@
+{
+  "config": {
+    "configFile": "D:\\Tools\\okx\\web\\playwright.config.ts",
+    "rootDir": "D:/Tools/okx/web/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Tools/okx/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "D:/Tools/okx/web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/Tools/okx/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "D:/Tools/okx/web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 6,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "panenka-e2e.spec.ts",
+      "file": "panenka-e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Desktop (1440×900)",
+          "file": "panenka-e2e.spec.ts",
+          "line": 85,
+          "column": 6,
+          "specs": [
+            {
+              "title": "/ — loads, no errors, footer/topbar OK",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7962,
+                      "error": {
+                        "message": "Error: Footer missing required elements on /\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Footer missing required elements on /\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79",
+                        "location": {
+                          "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                          "column": 79,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[90m// Footer\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       expect(result\u001b[33m.\u001b[39mfooterOk\u001b[33m,\u001b[39m \u001b[32m`Footer missing required elements on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       \u001b[90m// TopBar\u001b[39m\n \u001b[90m 101 |\u001b[39m       expect(result\u001b[33m.\u001b[39mtopBarOk\u001b[33m,\u001b[39m \u001b[32m`TopBar PANENKA brand missing on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                            "column": 79,
+                            "line": 98
+                          },
+                          "message": "Error: Footer missing required elements on /\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   96 |\n   97 |       // Footer\n>  98 |       expect(result.footerOk, `Footer missing required elements on ${route}`).toBe(true);\n      |                                                                               ^\n   99 |\n  100 |       // TopBar\n  101 |       expect(result.topBarOk, `TopBar PANENKA brand missing on ${route}`).toBe(true);\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:23:50.238Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-32516--no-errors-footer-topbar-OK-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-32516--no-errors-footer-topbar-OK-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-32516--no-errors-footer-topbar-OK-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                        "column": 79,
+                        "line": 98
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-69ce134a3a1234e88078",
+              "file": "panenka-e2e.spec.ts",
+              "line": 87,
+              "column": 9
+            },
+            {
+              "title": "/lobby — loads, no errors, footer/topbar OK",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4377,
+                      "error": {
+                        "message": "Error: Footer missing required elements on /lobby\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Footer missing required elements on /lobby\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79",
+                        "location": {
+                          "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                          "column": 79,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[90m// Footer\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       expect(result\u001b[33m.\u001b[39mfooterOk\u001b[33m,\u001b[39m \u001b[32m`Footer missing required elements on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       \u001b[90m// TopBar\u001b[39m\n \u001b[90m 101 |\u001b[39m       expect(result\u001b[33m.\u001b[39mtopBarOk\u001b[33m,\u001b[39m \u001b[32m`TopBar PANENKA brand missing on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                            "column": 79,
+                            "line": 98
+                          },
+                          "message": "Error: Footer missing required elements on /lobby\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   96 |\n   97 |       // Footer\n>  98 |       expect(result.footerOk, `Footer missing required elements on ${route}`).toBe(true);\n      |                                                                               ^\n   99 |\n  100 |       // TopBar\n  101 |       expect(result.topBarOk, `TopBar PANENKA brand missing on ${route}`).toBe(true);\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:23:59.463Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-6b808--no-errors-footer-topbar-OK-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-6b808--no-errors-footer-topbar-OK-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-6b808--no-errors-footer-topbar-OK-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                        "column": 79,
+                        "line": 98
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-b319a1d10f36174a7dd3",
+              "file": "panenka-e2e.spec.ts",
+              "line": 87,
+              "column": 9
+            },
+            {
+              "title": "/create — loads, no errors, footer/topbar OK",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4569,
+                      "error": {
+                        "message": "Error: Footer missing required elements on /create\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Footer missing required elements on /create\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79",
+                        "location": {
+                          "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                          "column": 79,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[90m// Footer\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       expect(result\u001b[33m.\u001b[39mfooterOk\u001b[33m,\u001b[39m \u001b[32m`Footer missing required elements on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       \u001b[90m// TopBar\u001b[39m\n \u001b[90m 101 |\u001b[39m       expect(result\u001b[33m.\u001b[39mtopBarOk\u001b[33m,\u001b[39m \u001b[32m`TopBar PANENKA brand missing on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                            "column": 79,
+                            "line": 98
+                          },
+                          "message": "Error: Footer missing required elements on /create\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   96 |\n   97 |       // Footer\n>  98 |       expect(result.footerOk, `Footer missing required elements on ${route}`).toBe(true);\n      |                                                                               ^\n   99 |\n  100 |       // TopBar\n  101 |       expect(result.topBarOk, `TopBar PANENKA brand missing on ${route}`).toBe(true);\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:04.978Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-eb6c4--no-errors-footer-topbar-OK-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-eb6c4--no-errors-footer-topbar-OK-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-eb6c4--no-errors-footer-topbar-OK-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                        "column": 79,
+                        "line": 98
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-e79340e97a97d5268156",
+              "file": "panenka-e2e.spec.ts",
+              "line": 87,
+              "column": 9
+            },
+            {
+              "title": "/leaderboard — loads, no errors, footer/topbar OK",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4089,
+                      "error": {
+                        "message": "Error: Footer missing required elements on /leaderboard\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Footer missing required elements on /leaderboard\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79",
+                        "location": {
+                          "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                          "column": 79,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[90m// Footer\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       expect(result\u001b[33m.\u001b[39mfooterOk\u001b[33m,\u001b[39m \u001b[32m`Footer missing required elements on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       \u001b[90m// TopBar\u001b[39m\n \u001b[90m 101 |\u001b[39m       expect(result\u001b[33m.\u001b[39mtopBarOk\u001b[33m,\u001b[39m \u001b[32m`TopBar PANENKA brand missing on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                            "column": 79,
+                            "line": 98
+                          },
+                          "message": "Error: Footer missing required elements on /leaderboard\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   96 |\n   97 |       // Footer\n>  98 |       expect(result.footerOk, `Footer missing required elements on ${route}`).toBe(true);\n      |                                                                               ^\n   99 |\n  100 |       // TopBar\n  101 |       expect(result.topBarOk, `TopBar PANENKA brand missing on ${route}`).toBe(true);\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:10.599Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-2f194--no-errors-footer-topbar-OK-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-2f194--no-errors-footer-topbar-OK-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-2f194--no-errors-footer-topbar-OK-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                        "column": 79,
+                        "line": 98
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-e6f0ac34e3addd51c05b",
+              "file": "panenka-e2e.spec.ts",
+              "line": 87,
+              "column": 9
+            },
+            {
+              "title": "/profile — loads, no errors, footer/topbar OK",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4325,
+                      "error": {
+                        "message": "Error: Footer missing required elements on /profile\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Footer missing required elements on /profile\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79",
+                        "location": {
+                          "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                          "column": 79,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[90m// Footer\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       expect(result\u001b[33m.\u001b[39mfooterOk\u001b[33m,\u001b[39m \u001b[32m`Footer missing required elements on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       \u001b[90m// TopBar\u001b[39m\n \u001b[90m 101 |\u001b[39m       expect(result\u001b[33m.\u001b[39mtopBarOk\u001b[33m,\u001b[39m \u001b[32m`TopBar PANENKA brand missing on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                            "column": 79,
+                            "line": 98
+                          },
+                          "message": "Error: Footer missing required elements on /profile\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   96 |\n   97 |       // Footer\n>  98 |       expect(result.footerOk, `Footer missing required elements on ${route}`).toBe(true);\n      |                                                                               ^\n   99 |\n  100 |       // TopBar\n  101 |       expect(result.topBarOk, `TopBar PANENKA brand missing on ${route}`).toBe(true);\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:15.649Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-e97e5--no-errors-footer-topbar-OK-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-e97e5--no-errors-footer-topbar-OK-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-e97e5--no-errors-footer-topbar-OK-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                        "column": 79,
+                        "line": 98
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-bd1c4267d8189872ab23",
+              "file": "panenka-e2e.spec.ts",
+              "line": 87,
+              "column": 9
+            },
+            {
+              "title": "/faq — loads, no errors, footer/topbar OK",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4454,
+                      "error": {
+                        "message": "Error: Footer missing required elements on /faq\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Footer missing required elements on /faq\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79",
+                        "location": {
+                          "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                          "column": 79,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[90m// Footer\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       expect(result\u001b[33m.\u001b[39mfooterOk\u001b[33m,\u001b[39m \u001b[32m`Footer missing required elements on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       \u001b[90m// TopBar\u001b[39m\n \u001b[90m 101 |\u001b[39m       expect(result\u001b[33m.\u001b[39mtopBarOk\u001b[33m,\u001b[39m \u001b[32m`TopBar PANENKA brand missing on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                            "column": 79,
+                            "line": 98
+                          },
+                          "message": "Error: Footer missing required elements on /faq\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   96 |\n   97 |       // Footer\n>  98 |       expect(result.footerOk, `Footer missing required elements on ${route}`).toBe(true);\n      |                                                                               ^\n   99 |\n  100 |       // TopBar\n  101 |       expect(result.topBarOk, `TopBar PANENKA brand missing on ${route}`).toBe(true);\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:20.825Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-9afd1--no-errors-footer-topbar-OK-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-9afd1--no-errors-footer-topbar-OK-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-9afd1--no-errors-footer-topbar-OK-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                        "column": 79,
+                        "line": 98
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-db2704c56bfbfb7a3b58",
+              "file": "panenka-e2e.spec.ts",
+              "line": 87,
+              "column": 9
+            },
+            {
+              "title": "/about — loads, no errors, footer/topbar OK",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4299,
+                      "error": {
+                        "message": "Error: Footer missing required elements on /about\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Footer missing required elements on /about\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79",
+                        "location": {
+                          "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                          "column": 79,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[90m// Footer\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       expect(result\u001b[33m.\u001b[39mfooterOk\u001b[33m,\u001b[39m \u001b[32m`Footer missing required elements on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       \u001b[90m// TopBar\u001b[39m\n \u001b[90m 101 |\u001b[39m       expect(result\u001b[33m.\u001b[39mtopBarOk\u001b[33m,\u001b[39m \u001b[32m`TopBar PANENKA brand missing on ${route}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                            "column": 79,
+                            "line": 98
+                          },
+                          "message": "Error: Footer missing required elements on /about\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   96 |\n   97 |       // Footer\n>  98 |       expect(result.footerOk, `Footer missing required elements on ${route}`).toBe(true);\n      |                                                                               ^\n   99 |\n  100 |       // TopBar\n  101 |       expect(result.topBarOk, `TopBar PANENKA brand missing on ${route}`).toBe(true);\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:98:79"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:26.132Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-529db--no-errors-footer-topbar-OK-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-529db--no-errors-footer-topbar-OK-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-529db--no-errors-footer-topbar-OK-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                        "column": 79,
+                        "line": 98
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-f3ea21a790ffa6354555",
+              "file": "panenka-e2e.spec.ts",
+              "line": 87,
+              "column": 9
+            },
+            {
+              "title": "footer external links have target=_blank",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3336,
+                      "error": {
+                        "message": "Error: Footer external links missing target=_blank: [{\"href\":\"https://www.playpanenka.fun/\",\"target\":\"\",\"text\":\"\"},{\"href\":\"https://www.playpanenka.fun/lobby\",\"target\":\"\",\"text\":\"Lobby\"},{\"href\":\"https://www.playpanenka.fun/create\",\"target\":\"\",\"text\":\"Create a Match\"},{\"href\":\"https://www.playpanenka.fun/leaderboard\",\"target\":\"\",\"text\":\"Leaderboard\"},{\"href\":\"https://www.playpanenka.fun/profile\",\"target\":\"\",\"text\":\"Profile\"},{\"href\":\"https://www.playpanenka.fun/faq\",\"target\":\"\",\"text\":\"How to Play\"},{\"href\":\"https://www.playpanenka.fun/about\",\"target\":\"\",\"text\":\"About\"}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m7\u001b[39m",
+                        "stack": "Error: Footer external links missing target=_blank: [{\"href\":\"https://www.playpanenka.fun/\",\"target\":\"\",\"text\":\"\"},{\"href\":\"https://www.playpanenka.fun/lobby\",\"target\":\"\",\"text\":\"Lobby\"},{\"href\":\"https://www.playpanenka.fun/create\",\"target\":\"\",\"text\":\"Create a Match\"},{\"href\":\"https://www.playpanenka.fun/leaderboard\",\"target\":\"\",\"text\":\"Leaderboard\"},{\"href\":\"https://www.playpanenka.fun/profile\",\"target\":\"\",\"text\":\"Profile\"},{\"href\":\"https://www.playpanenka.fun/faq\",\"target\":\"\",\"text\":\"How to Play\"},{\"href\":\"https://www.playpanenka.fun/about\",\"target\":\"\",\"text\":\"About\"}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m7\u001b[39m\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:147:7",
+                        "location": {
+                          "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                          "column": 7,
+                          "line": 147
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 145 |\u001b[39m       externalWithoutBlank\u001b[33m.\u001b[39mlength\u001b[33m,\u001b[39m\n \u001b[90m 146 |\u001b[39m       \u001b[32m`Footer external links missing target=_blank: ${JSON.stringify(externalWithoutBlank)}`\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 147 |\u001b[39m     )\u001b[33m.\u001b[39mtoBe(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 148 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m\n \u001b[90m 150 |\u001b[39m   \u001b[90m// Internal SPA nav (no full reloads)\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                            "column": 7,
+                            "line": 147
+                          },
+                          "message": "Error: Footer external links missing target=_blank: [{\"href\":\"https://www.playpanenka.fun/\",\"target\":\"\",\"text\":\"\"},{\"href\":\"https://www.playpanenka.fun/lobby\",\"target\":\"\",\"text\":\"Lobby\"},{\"href\":\"https://www.playpanenka.fun/create\",\"target\":\"\",\"text\":\"Create a Match\"},{\"href\":\"https://www.playpanenka.fun/leaderboard\",\"target\":\"\",\"text\":\"Leaderboard\"},{\"href\":\"https://www.playpanenka.fun/profile\",\"target\":\"\",\"text\":\"Profile\"},{\"href\":\"https://www.playpanenka.fun/faq\",\"target\":\"\",\"text\":\"How to Play\"},{\"href\":\"https://www.playpanenka.fun/about\",\"target\":\"\",\"text\":\"About\"}]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m7\u001b[39m\n\n  145 |       externalWithoutBlank.length,\n  146 |       `Footer external links missing target=_blank: ${JSON.stringify(externalWithoutBlank)}`\n> 147 |     ).toBe(0);\n      |       ^\n  148 |   });\n  149 |\n  150 |   // Internal SPA nav (no full reloads)\n    at D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts:147:7"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Footer links found: [{\"href\":\"https://www.playpanenka.fun/\",\"target\":\"\",\"text\":\"\"},{\"href\":\"https://www.oklink.com/xlayer/address/0x51F6DbeFCeE8ad9B491f08615211E09027f45110\",\"target\":\"_blank\",\"text\":\"contract\\n0x51F6…5110 ↗\"},{\"href\":\"https://www.playpanenka.fun/lobby\",\"target\":\"\",\"text\":\"Lobby\"},{\"href\":\"https://www.playpanenka.fun/create\",\"target\":\"\",\"text\":\"Create a Match\"},{\"href\":\"https://www.playpanenka.fun/leaderboard\",\"target\":\"\",\"text\":\"Leaderboard\"},{\"href\":\"https://www.playpanenka.fun/profile\",\"target\":\"\",\"text\":\"Profile\"},{\"href\":\"https://www.playpanenka.fun/faq\",\"target\":\"\",\"text\":\"How to Play\"},{\"href\":\"https://www.playpanenka.fun/about\",\"target\":\"\",\"text\":\"About\"},{\"href\":\"https://x.com/play_panenka\",\"target\":\"_blank\",\"text\":\"@play_panenka ↗\"},{\"href\":\"https://github.com/Magicianhax/panenka\",\"target\":\"_blank\",\"text\":\"GitHub ↗\"},{\"href\":\"https://www.okx.com/xlayer\",\"target\":\"_blank\",\"text\":\"X Layer ↗\"}]\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:31.286Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-440bb-nal-links-have-target-blank-desktop\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-440bb-nal-links-have-target-blank-desktop\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-440bb-nal-links-have-target-blank-desktop\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Tools\\okx\\web\\tests\\panenka-e2e.spec.ts",
+                        "column": 7,
+                        "line": 147
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-52bae831e02661622396",
+              "file": "panenka-e2e.spec.ts",
+              "line": 126,
+              "column": 7
+            },
+            {
+              "title": "internal nav does not cause full page reloads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4513,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:35.587Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-5646e-not-cause-full-page-reloads-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-16f8dcb4027a3d55fefa",
+              "file": "panenka-e2e.spec.ts",
+              "line": 151,
+              "column": 7
+            },
+            {
+              "title": "/profile without wallet shows connect prompt, not crash",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2805,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:40.400Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-37f44-ws-connect-prompt-not-crash-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-4cab62b79dc83bb3ceae",
+              "file": "panenka-e2e.spec.ts",
+              "line": 182,
+              "column": 7
+            },
+            {
+              "title": "/faq has 3x3 scoring grid content",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3031,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:43.242Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Desktop-1440×9-3eb2c-as-3x3-scoring-grid-content-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-553de2d48b2b8c94e59e",
+              "file": "panenka-e2e.spec.ts",
+              "line": 205,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Mobile (390×844)",
+          "file": "panenka-e2e.spec.ts",
+          "line": 226,
+          "column": 6,
+          "specs": [
+            {
+              "title": "/ — loads OK on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3982,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:46.312Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Mobile-390×844-—-loads-OK-on-mobile-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-f033046f8f8556d18e29",
+              "file": "panenka-e2e.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "/lobby — loads OK on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4209,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:50.476Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Mobile-390×844-lobby-—-loads-OK-on-mobile-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-5ff1a00ff2539e8a90eb",
+              "file": "panenka-e2e.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "/create — loads OK on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3489,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:55.029Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Mobile-390×844-create-—-loads-OK-on-mobile-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-c10754b84ce15f329cc6",
+              "file": "panenka-e2e.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "/leaderboard — loads OK on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3657,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:24:58.770Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Mobile-390×844-leaderboard-—-loads-OK-on-mobile-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-6e91f7e60a0aaba0444f",
+              "file": "panenka-e2e.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "/profile — loads OK on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3482,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:25:02.475Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Mobile-390×844-profile-—-loads-OK-on-mobile-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-8e02a51fe8f0a1667780",
+              "file": "panenka-e2e.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "/faq — loads OK on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3631,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:25:06.447Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Mobile-390×844-faq-—-loads-OK-on-mobile-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-4af8def32845bbbef2c0",
+              "file": "panenka-e2e.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "/about — loads OK on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3725,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:25:10.129Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Mobile-390×844-about-—-loads-OK-on-mobile-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-8528dc876dedb7e45f24",
+              "file": "panenka-e2e.spec.ts",
+              "line": 228,
+              "column": 9
+            },
+            {
+              "title": "mobile hamburger menu is visible and opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3709,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "No hamburger/header button found at mobile viewport — may use always-visible nav\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-23T14:25:13.891Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Tools\\okx\\web\\test-results\\panenka-e2e-Mobile-390×844-18224-r-menu-is-visible-and-opens-desktop\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a43bd498bdc6d023d60c-dc729b56cfb76ca6a605",
+              "file": "panenka-e2e.spec.ts",
+              "line": 238,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-23T14:23:49.303Z",
+    "duration": 88962.129,
+    "expected": 11,
+    "skipped": 0,
+    "unexpected": 8,
+    "flaky": 0
+  }
+}

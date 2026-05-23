@@ -1,6 +1,7 @@
 "use client";
 
 import { use, useEffect, useMemo, useRef, useState } from "react";
+import { notFound } from "next/navigation";
 import {
   useAccount,
   useReadContract,
@@ -45,7 +46,11 @@ function MatchNotifier({ joined, st, isP1, youAreIn }: { joined: boolean; st: nu
 
 export default function MatchPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const matchId = useMemo(() => BigInt(id), [id]);
+  // BigInt() throws on non-numeric input; bad URLs (e.g. /match/abc) trigger
+  // the not-found page instead of an uncaught render error.
+  const matchId = useMemo(() => {
+    try { return BigInt(id); } catch { notFound(); }
+  }, [id]);
   const { address, isConnected } = useAccount();
   const [aimShoot, setAimShoot] = useState<number | null>(null);
 

@@ -78,7 +78,7 @@ export function useMyMatches(address?: Address) {
           }
         }
 
-        setData({ open, active, settled, record: { played: wins + losses + draws, wins, losses, draws, net } });
+        if (!cancelled) setData({ open, active, settled, record: { played: wins + losses + draws, wins, losses, draws, net } });
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e));
       }
