@@ -203,7 +203,10 @@ function useCrowdTexture() {
 function useAdTexture() {
   return useMemo(() => {
     const c = document.createElement("canvas");
-    c.width = 1024;
+    // Width needs to fit one full pass of every segment so the tile wraps
+    // seamlessly. Six 56–64px segments + gaps need ~2800px; round up to 4096
+    // for clean power-of-two GPU upload + headroom.
+    c.width = 4096;
     c.height = 128;
     const g = c.getContext("2d")!;
     g.fillStyle = "#06101f";
@@ -247,7 +250,9 @@ function useAdTexture() {
     g.shadowBlur = 0;
     const tex = new THREE.CanvasTexture(c);
     tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-    tex.repeat.set(3, 1);
+    // Canvas is 4× wider than before, so cut the tile count from 3 to ~0.75
+    // to keep the on-screen text the same physical size on the LED board.
+    tex.repeat.set(0.75, 1);
     tex.anisotropy = 8;
     return tex;
   }, []);
