@@ -221,20 +221,27 @@ function useAdTexture() {
       { text: "1V1 PENALTY SHOOTOUT",    color: "#FFFFFF", size: 56 },
       { text: "BUILT ON X LAYER · WC26", color: "#FFC940", size: 56 },
     ];
-    let x = 20;
+    // Left/right margins must match for the texture to wrap seamlessly when tiled
+    // (repeat.set(3,1)). Skip any segment that would overrun the right edge —
+    // otherwise the canvas clips the text mid-word and the seam shows e.g.
+    // "play_par" instead of "@play_panenka".
+    const MARGIN = 20;
+    const GAP = 60;
+    let x = MARGIN;
     let i = 0;
-    while (x < c.width) {
+    while (true) {
       const seg = segs[i % segs.length];
       g.font = `bold ${seg.size}px 'Chakra Petch', sans-serif`;
+      const w = g.measureText(seg.text).width;
+      if (x + w > c.width - MARGIN) break;
       g.fillStyle = seg.color;
       if (seg.emph) {
-        // subtle glow on the PANENKA wordmark only
         g.shadowColor = seg.color; g.shadowBlur = 12;
       } else {
         g.shadowBlur = 0;
       }
       g.fillText(seg.text, x, c.height / 2);
-      x += g.measureText(seg.text).width + 60;
+      x += w + GAP;
       i++;
     }
     g.shadowBlur = 0;
