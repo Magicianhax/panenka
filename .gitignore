@@ -59,7 +59,5 @@ web/test-results/
 web/playwright-report/
 web/screenshots/
 
-# --- Launch video (Remotion project) — tracked, but ignore generated/install dirs ---
-video/node_modules/
-video/out/
-video/.remotion/
+# --- Launch video (Remotion project, internal) ---
+video/
