@@ -37,11 +37,11 @@ export default function Home() {
   const loadingStats = settled === null;
 
   return (
-    <div className="arena-bg" style={{ minHeight: "100dvh", position: "relative", overflow: "hidden" }}>
+    <div className="arena-bg" style={{ minHeight: "100dvh", position: "relative", overflowX: "clip" }}>
       <TopBar active="home" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-6 pt-10 lg:px-9">
+      <section className="mx-auto max-w-7xl px-6 pt-10 lg:px-9">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
           <div>
             <h1 className="display" style={{ fontSize: "clamp(72px,15vw,168px)", color: "var(--fg)", margin: 0, lineHeight: 0.82, letterSpacing: "-0.03em" }}>
@@ -71,7 +71,7 @@ export default function Home() {
 
       {/* LIVE TICKER — spectate in-progress matches straight from the landing */}
       {liveList.length > 0 && (
-        <section className="mx-auto max-w-6xl px-6 lg:px-9" style={{ padding: "20px 24px 0" }}>
+        <section className="mx-auto max-w-7xl px-6 lg:px-9" style={{ padding: "20px 24px 0" }}>
           <div className="panel row" style={{ padding: "10px 16px", gap: 14, borderColor: "var(--goal)", boxShadow: "0 0 24px -12px var(--goal)" }}>
             <span className="tag tag--goal" style={{ flexShrink: 0 }}><span className="live-pulse" style={{ background: "var(--goal)" }} />LIVE NOW</span>
             <div className="ticker-mask" style={{ flex: 1, minWidth: 0 }}>
@@ -85,7 +85,7 @@ export default function Home() {
       )}
 
       {/* LIVE STATS BAND */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-9" style={{ padding: "48px 24px 0" }}>
+      <section className="mx-auto max-w-7xl px-6 lg:px-9" style={{ padding: "48px 24px 0" }}>
         <div className="row between" style={{ marginBottom: 14 }}>
           <div className="eyebrow eyebrow--gold">◆ on-chain · live</div>
           <Link href="/leaderboard" className="mono" style={{ fontSize: 12, color: "var(--gold)", letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none" }}>
@@ -102,7 +102,7 @@ export default function Home() {
       </section>
 
       {/* LIVE FEED */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-9" style={{ padding: "48px 24px 28px" }}>
+      <section className="mx-auto max-w-7xl px-6 lg:px-9" style={{ padding: "48px 24px 28px" }}>
         <div className="row between" style={{ marginBottom: 20, alignItems: "baseline" }}>
           <div>
             <div className="eyebrow eyebrow--cyan">◆ open now</div>
@@ -127,7 +127,7 @@ export default function Home() {
       </section>
 
       {/* RULES */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-9" style={{ padding: "48px 24px" }}>
+      <section className="mx-auto max-w-7xl px-6 lg:px-9" style={{ padding: "48px 24px" }}>
         <div style={{ marginBottom: 28 }}>
           <div className="eyebrow eyebrow--magenta">★ the loop</div>
           <div className="display" style={{ fontSize: "clamp(40px,8vw,88px)", color: "var(--fg)", marginTop: 6, lineHeight: 0.9, letterSpacing: "-0.02em" }}>
@@ -153,7 +153,7 @@ export default function Home() {
       </section>
 
       {/* season strip */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-9" style={{ padding: "20px 24px 64px" }}>
+      <section className="mx-auto max-w-7xl px-6 lg:px-9" style={{ padding: "20px 24px 64px" }}>
         <div className="panel" style={{ padding: "24px 32px" }}>
           <div className="row between" style={{ flexWrap: "wrap", gap: 16 }}>
             <div className="row" style={{ gap: 24 }}>

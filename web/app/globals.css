@@ -46,8 +46,21 @@
 }
 
 @layer base {
-  html, body {
-    background: var(--void);
+  html { background: var(--void); }
+  body {
+    /* Site-wide background: grid pattern + brand color washes + base gradient.
+       Lives on <body> (not .arena-bg) so it spans the whole document —
+       prevents the dark seam between page content and the footer. */
+    background:
+      linear-gradient(to right, rgba(242,239,230,0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(242,239,230,0.035) 1px, transparent 1px),
+      radial-gradient(ellipse 70% 50% at 15% 8%, rgba(0,229,255,0.14) 0%, transparent 55%),
+      radial-gradient(ellipse 65% 50% at 85% 22%, rgba(255,201,64,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 55% at 50% 100%, rgba(255,31,139,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 40% at 50% 0%, rgba(0,229,255,0.08) 0%, transparent 60%),
+      linear-gradient(180deg, var(--void) 0%, var(--abyss) 100%);
+    background-size: 64px 64px, 64px 64px, auto, auto, auto, auto, auto;
+    background-attachment: fixed;
     color: var(--fg);
     font-family: var(--body);
     -webkit-font-smoothing: antialiased;
@@ -78,11 +91,8 @@
 
 /* ---- bg ---- */
 .arena-bg {
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(0,229,255,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 30% at 50% 100%, rgba(255,201,64,0.06) 0%, transparent 60%),
-    radial-gradient(circle at 15% 50%, rgba(255,31,139,0.04) 0%, transparent 40%),
-    linear-gradient(180deg, var(--void) 0%, var(--abyss) 100%);
+  /* Background lives on <body> so it extends seamlessly through the footer.
+     This class stays as a positioning hook (sticky header needs it). */
 }
 .scanlines::before {
   content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
@@ -229,3 +239,59 @@
 .btn--alarm { animation: btn-alarm 1s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* =================================================================
+   MOBILE-FIRST RESPONSIVE FIXES
+   ================================================================= */
+
+/* Footer layout — brand stacked above a 3-up nav row on mobile,
+   side-by-side on desktop. */
+.footer-grid {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr;
+}
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .footer-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr); gap: 48px; }
+  .footer-nav { gap: 32px; }
+}
+
+/* TopBar: hide the season tag on phones — keeps the brand
+   wordmark legible and the burger/connect from getting pushed. */
+@media (max-width: 480px) {
+  .topbar-season-tag { display: none !important; }
+}
+
+/* Bigger tap targets on the burger / connect button on mobile,
+   reduce horizontal padding so they don't crowd. */
+@media (max-width: 480px) {
+  .nav-burger { width: 38px !important; height: 38px !important; }
+}
+
+/* Long words / addresses inside panels shouldn't blow out the
+   container — common cause of horizontal-scroll on phones. */
+@media (max-width: 640px) {
+  .panel { word-break: break-word; overflow-wrap: anywhere; }
+}
+
+/* Hero on landing: tighten massive display headlines on small
+   phones so they don't overflow. clamp() handles most, but the
+   72px min was still too wide at 320–360px viewports. */
+@media (max-width: 380px) {
+  .display { letter-spacing: -0.02em; }
+}
+
+/* Default body horizontal padding floor — make sure no page hugs
+   the very edge on phones. */
+@media (max-width: 640px) {
+  .mx-auto.max-w-7xl,
+  .mx-auto.max-w-6xl {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

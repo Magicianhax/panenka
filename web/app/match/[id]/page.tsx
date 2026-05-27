@@ -101,7 +101,7 @@ export default function MatchPage({ params }: { params: Promise<{ id: string }> 
   const st = Number(state);
 
   return (
-    <div style={{ minHeight: "100dvh", position: "relative", overflow: "hidden", background: "var(--void)" }}>
+    <div style={{ minHeight: "100dvh", position: "relative", overflowX: "clip", background: "var(--void)" }}>
       <TopBar active="lobby" />
       <MatchNotifier joined={joined} st={st} isP1={isP1} youAreIn={youAreIn} />
 

@@ -20,11 +20,22 @@ const ITEMS: { id: NavId; label: string; href: string }[] = [
 export function TopBar({ active }: { active?: NavId }) {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ position: "sticky", top: 0, zIndex: 50, backdropFilter: "blur(10px)" }}>
+    <div
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        backdropFilter: "blur(16px) saturate(140%)",
+        WebkitBackdropFilter: "blur(16px) saturate(140%)",
+      }}
+    >
       <div
         style={{
-          background: "linear-gradient(180deg, var(--abyss) 0%, var(--bg) 100%)",
+          // Translucent dark so the arena-bg grid + color washes show through.
+          background: "linear-gradient(180deg, rgba(2,4,16,0.82) 0%, rgba(5,7,20,0.65) 100%)",
           borderBottom: "1px solid var(--line)",
+          // Gold "broadcast edge" — anchors the header to the brand without screaming.
+          boxShadow: "inset 0 -1px 0 0 rgba(255,201,64,0.22), 0 6px 18px -6px rgba(0,0,0,0.55)",
           padding: "12px 16px",
           display: "flex",
           justifyContent: "space-between",
@@ -36,7 +47,7 @@ export function TopBar({ active }: { active?: NavId }) {
           <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }} onClick={() => setOpen(false)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/panenka_lockup.png" alt="PANENKA" style={{ display: "block", height: 30, width: "auto" }} />
-            <span className="mono" style={{ fontSize: 8, color: "var(--fg-soft)", letterSpacing: "0.22em", whiteSpace: "nowrap", borderLeft: "1px solid var(--line)", paddingLeft: 10 }}>
+            <span className="mono topbar-season-tag" style={{ fontSize: 8, color: "var(--fg-soft)", letterSpacing: "0.22em", whiteSpace: "nowrap", borderLeft: "1px solid var(--line)", paddingLeft: 10 }}>
               X CUP · WC26
             </span>
           </Link>
