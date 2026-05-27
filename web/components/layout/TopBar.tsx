@@ -20,7 +20,7 @@ const ITEMS: { id: NavId; label: string; href: string }[] = [
 export function TopBar({ active }: { active?: NavId }) {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ position: "relative", zIndex: 20 }}>
+    <div style={{ position: "sticky", top: 0, zIndex: 50, backdropFilter: "blur(10px)" }}>
       <div
         style={{
           background: "linear-gradient(180deg, var(--abyss) 0%, var(--bg) 100%)",
